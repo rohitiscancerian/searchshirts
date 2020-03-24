@@ -15,37 +15,41 @@ namespace ConstructionLine.CodingChallenge
             // TODO: data preparation and initialisation of additional data structures to improve performance goes here.
         }
 
+        private List<Shirt> FilterShirtsByColorAndSize(Size size,Color color)
+        {
+           return _shirts.Where(x => (size == null || x.Size == size) && ( color == null || x.Color == color )).ToList();
+        }
         private void SortShirtsByColorAndSizeAndStoreInDictionary()
         {
-            var blackSmallList = _shirts.Where(x => x.Color == Color.Black && x.Size == Size.Small).ToList();
-            var blackMediumList = _shirts.Where(x => x.Color == Color.Black && x.Size == Size.Medium).ToList();
-            var blackLargeList = _shirts.Where(x => x.Color == Color.Black && x.Size == Size.Large).ToList();
+            var blackSmallList = FilterShirtsByColorAndSize(Size.Small,Color.Black);
+            var blackMediumList = FilterShirtsByColorAndSize(Size.Medium,Color.Black);
+            var blackLargeList = FilterShirtsByColorAndSize(Size.Large, Color.Black);
 
-            var whiteSmallList = _shirts.Where(x => x.Color == Color.White && x.Size == Size.Small).ToList();
-            var whiteMediumList = _shirts.Where(x => x.Color == Color.White && x.Size == Size.Medium).ToList();
-            var whiteLargeList = _shirts.Where(x => x.Color == Color.White && x.Size == Size.Large).ToList();
+            var whiteSmallList = FilterShirtsByColorAndSize(Size.Small, Color.White);
+            var whiteMediumList = FilterShirtsByColorAndSize(Size.Medium, Color.White);
+            var whiteLargeList = FilterShirtsByColorAndSize(Size.Large, Color.White);
 
-            var yellowSmallList = _shirts.Where(x => x.Color == Color.Yellow && x.Size == Size.Small).ToList();
-            var yellowMediumList = _shirts.Where(x => x.Color == Color.Yellow && x.Size == Size.Medium).ToList();
-            var yellowLargeList = _shirts.Where(x => x.Color == Color.Yellow && x.Size == Size.Large).ToList();
+            var yellowSmallList = FilterShirtsByColorAndSize(Size.Small, Color.Yellow);
+            var yellowMediumList = FilterShirtsByColorAndSize(Size.Medium, Color.Yellow); ;
+            var yellowLargeList = FilterShirtsByColorAndSize(Size.Large, Color.Yellow);
 
-            var blueSmallList = _shirts.Where(x => x.Color == Color.Blue && x.Size == Size.Small).ToList();
-            var blueMediumList = _shirts.Where(x => x.Color == Color.Blue && x.Size == Size.Medium).ToList();
-            var blueLargeList = _shirts.Where(x => x.Color == Color.Blue && x.Size == Size.Large).ToList();
+            var blueSmallList = FilterShirtsByColorAndSize(Size.Small, Color.Blue);
+            var blueMediumList = FilterShirtsByColorAndSize(Size.Medium, Color.Blue);
+            var blueLargeList = FilterShirtsByColorAndSize(Size.Large, Color.Blue);
 
-            var redSmallList = _shirts.Where(x => x.Color == Color.Red && x.Size == Size.Small).ToList();
-            var redMediumList = _shirts.Where(x => x.Color == Color.Red && x.Size == Size.Medium).ToList();
-            var redLargeList = _shirts.Where(x => x.Color == Color.Red && x.Size == Size.Large).ToList();
+            var redSmallList = FilterShirtsByColorAndSize(Size.Small, Color.Red);
+            var redMediumList = FilterShirtsByColorAndSize(Size.Medium, Color.Red);
+            var redLargeList = FilterShirtsByColorAndSize(Size.Large, Color.Red);
 
-            var small = _shirts.Where(x => x.Size == Size.Small).ToList();
-            var medium = _shirts.Where(x => x.Size == Size.Medium).ToList();
-            var large = _shirts.Where(x => x.Size == Size.Large).ToList();
+            var small = FilterShirtsByColorAndSize(Size.Small,null);
+            var medium = FilterShirtsByColorAndSize(Size.Medium, null);
+            var large = FilterShirtsByColorAndSize(Size.Large, null);
 
-            var black = _shirts.Where(x => x.Color == Color.Black).ToList();
-            var white = _shirts.Where(x => x.Color == Color.White).ToList();
-            var yellow = _shirts.Where(x => x.Color == Color.Yellow).ToList();
-            var blue = _shirts.Where(x => x.Color == Color.Blue).ToList();
-            var red = _shirts.Where(x => x.Color == Color.Red).ToList();
+            var black = FilterShirtsByColorAndSize(null, Color.Black);
+            var white = FilterShirtsByColorAndSize(null, Color.White);
+            var yellow = FilterShirtsByColorAndSize(null, Color.Yellow);
+            var blue = FilterShirtsByColorAndSize(null, Color.Blue);
+            var red = FilterShirtsByColorAndSize(null, Color.Red);
 
 
             _sortedShirts.Add("BlackSmall", blackSmallList);

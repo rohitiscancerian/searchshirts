@@ -28,7 +28,7 @@ namespace ConstructionLine.CodingChallenge.Tests
                 new Shirt(Guid.NewGuid(), "Yellow - Large", Size.Large, Color.Yellow),
                 new Shirt(Guid.NewGuid(), "White - Large", Size.Large, Color.White),
                 new Shirt(Guid.NewGuid(), "Black - Large", Size.Large, Color.Black),
-                 new Shirt(Guid.NewGuid(), "Red - Large", Size.Large, Color.Red),
+                new Shirt(Guid.NewGuid(), "Red - Large", Size.Large, Color.Red),
             };
         }
         [Test]
@@ -338,6 +338,143 @@ namespace ConstructionLine.CodingChallenge.Tests
             {
                 Colors = new List<Color> { Color.Blue, Color.Black, Color.Red, Color.Yellow, Color.White },
                 Sizes = new List<Size> { Size.Large, Size.Medium, Size.Small }
+            };
+
+            var results = searchEngine.Search(searchOptions);
+
+            AssertResults(results.Shirts, searchOptions);
+            AssertSizeCounts(_shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(_shirts, searchOptions, results.ColorCounts);
+        }
+        [Test]
+        public void ShouldSearchAllColorAndSmallSize()
+        {
+            var searchEngine = new SearchEngine(_shirts);
+
+            var searchOptions = new SearchOptions
+            {
+                Colors = new List<Color> { Color.Blue, Color.Black, Color.Red, Color.Yellow, Color.White },
+                Sizes = new List<Size> { Size.Small }
+            };
+
+            var results = searchEngine.Search(searchOptions);
+
+            AssertResults(results.Shirts, searchOptions);
+            AssertSizeCounts(_shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(_shirts, searchOptions, results.ColorCounts);
+        }
+
+        [Test]
+        public void ShouldSearchAllColorAndMediumSize()
+        {
+            var searchEngine = new SearchEngine(_shirts);
+
+            var searchOptions = new SearchOptions
+            {
+                Colors = new List<Color> { Color.Blue, Color.Black, Color.Red, Color.Yellow, Color.White },
+                Sizes = new List<Size> { Size.Medium }
+            };
+
+            var results = searchEngine.Search(searchOptions);
+
+            AssertResults(results.Shirts, searchOptions);
+            AssertSizeCounts(_shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(_shirts, searchOptions, results.ColorCounts);
+        }
+        [Test]
+        public void ShouldSearchAllColorAndLargeSize()
+        {
+            var searchEngine = new SearchEngine(_shirts);
+
+            var searchOptions = new SearchOptions
+            {
+                Colors = new List<Color> { Color.Blue, Color.Black, Color.Red, Color.Yellow, Color.White },
+                Sizes = new List<Size> { Size.Medium }
+            };
+
+            var results = searchEngine.Search(searchOptions);
+
+            AssertResults(results.Shirts, searchOptions);
+            AssertSizeCounts(_shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(_shirts, searchOptions, results.ColorCounts);
+        }
+        [Test]
+        public void ShouldSearchAllSizesAndBlueColor()
+        {
+            var searchEngine = new SearchEngine(_shirts);
+
+            var searchOptions = new SearchOptions
+            {
+                Colors = new List<Color> { Color.Blue },
+                Sizes = new List<Size> { Size.Small, Size.Medium , Size.Large}
+            };
+
+            var results = searchEngine.Search(searchOptions);
+
+            AssertResults(results.Shirts, searchOptions);
+            AssertSizeCounts(_shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(_shirts, searchOptions, results.ColorCounts);
+        }
+        [Test]
+        public void ShouldSearchAllSizesAndBlackColor()
+        {
+            var searchEngine = new SearchEngine(_shirts);
+
+            var searchOptions = new SearchOptions
+            {
+                Colors = new List<Color> { Color.Black },
+                Sizes = new List<Size> { Size.Small, Size.Medium, Size.Large }
+            };
+
+            var results = searchEngine.Search(searchOptions);
+
+            AssertResults(results.Shirts, searchOptions);
+            AssertSizeCounts(_shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(_shirts, searchOptions, results.ColorCounts);
+        }
+        [Test]
+        public void ShouldSearchAllSizesAndWhiteColor()
+        {
+            var searchEngine = new SearchEngine(_shirts);
+
+            var searchOptions = new SearchOptions
+            {
+                Colors = new List<Color> { Color.White },
+                Sizes = new List<Size> { Size.Small, Size.Medium, Size.Large }
+            };
+
+            var results = searchEngine.Search(searchOptions);
+
+            AssertResults(results.Shirts, searchOptions);
+            AssertSizeCounts(_shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(_shirts, searchOptions, results.ColorCounts);
+        }
+        [Test]
+        public void ShouldSearchAllSizesAndYellowColor()
+        {
+            var searchEngine = new SearchEngine(_shirts);
+
+            var searchOptions = new SearchOptions
+            {
+                Colors = new List<Color> { Color.Yellow },
+                Sizes = new List<Size> { Size.Small, Size.Medium, Size.Large }
+            };
+
+            var results = searchEngine.Search(searchOptions);
+
+            AssertResults(results.Shirts, searchOptions);
+            AssertSizeCounts(_shirts, searchOptions, results.SizeCounts);
+            AssertColorCounts(_shirts, searchOptions, results.ColorCounts);
+        }
+        [Test]
+        public void ShouldSearchAllSizesAndRedColor()
+        {
+            var searchEngine = new SearchEngine(_shirts);
+
+            var searchOptions = new SearchOptions
+            {
+                Colors = new List<Color> { Color.Red },
+                Sizes = new List<Size> { Size.Small, Size.Medium, Size.Large }
             };
 
             var results = searchEngine.Search(searchOptions);
