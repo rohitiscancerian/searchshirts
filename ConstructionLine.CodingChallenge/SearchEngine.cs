@@ -7,13 +7,17 @@ namespace ConstructionLine.CodingChallenge
     {
         private readonly List<Shirt> _shirts;
         private readonly Dictionary<string, List<Shirt>> _sortedShirts;
-        
         public SearchEngine(List<Shirt> shirts)
         {
             _shirts = shirts;
             _sortedShirts = new Dictionary<string, List<Shirt>>();
+            SortShirtsByColorAndSizeAndStoreInDictionary();
+            // TODO: data preparation and initialisation of additional data structures to improve performance goes here.
+        }
 
-            var blackSmallList =  _shirts.Where(x => x.Color == Color.Black && x.Size == Size.Small).ToList();
+        private void SortShirtsByColorAndSizeAndStoreInDictionary()
+        {
+            var blackSmallList = _shirts.Where(x => x.Color == Color.Black && x.Size == Size.Small).ToList();
             var blackMediumList = _shirts.Where(x => x.Color == Color.Black && x.Size == Size.Medium).ToList();
             var blackLargeList = _shirts.Where(x => x.Color == Color.Black && x.Size == Size.Large).ToList();
 
@@ -33,7 +37,7 @@ namespace ConstructionLine.CodingChallenge
             var redMediumList = _shirts.Where(x => x.Color == Color.Red && x.Size == Size.Medium).ToList();
             var redLargeList = _shirts.Where(x => x.Color == Color.Red && x.Size == Size.Large).ToList();
 
-            var small = _shirts.Where(x =>  x.Size == Size.Small).ToList();
+            var small = _shirts.Where(x => x.Size == Size.Small).ToList();
             var medium = _shirts.Where(x => x.Size == Size.Medium).ToList();
             var large = _shirts.Where(x => x.Size == Size.Large).ToList();
 
@@ -74,10 +78,7 @@ namespace ConstructionLine.CodingChallenge
             _sortedShirts.Add("Yellow", yellow);
             _sortedShirts.Add("Blue", blue);
             _sortedShirts.Add("Red", red);
-            // TODO: data preparation and initialisation of additional data structures to improve performance goes here.
-
         }
-
         private void SearchWithSize(SearchOptions options, SearchResults searchResult)
         {
             foreach (var size in options.Sizes)
@@ -104,7 +105,7 @@ namespace ConstructionLine.CodingChallenge
                 }
             }
         }
-            private void SearchWithColor(SearchOptions options, SearchResults searchResult)
+        private void SearchWithColor(SearchOptions options, SearchResults searchResult)
             {
                 foreach (var color in options.Colors)
                 {
@@ -140,7 +141,6 @@ namespace ConstructionLine.CodingChallenge
                     }
                 }
             }
-
         private void SearchWithSizeAndColor(SearchOptions options, SearchResults searchResult)
         {
             foreach (var color in options.Colors)
@@ -257,7 +257,6 @@ namespace ConstructionLine.CodingChallenge
                 }
             }
         }
-
         public SearchResults Search(SearchOptions options)
         {
             // TODO: search logic goes here.
@@ -292,12 +291,10 @@ namespace ConstructionLine.CodingChallenge
             }
             return searchResult;
         }
-
         private bool IsSizeSpecified(SearchOptions options)
         {
             return options.Sizes != null && options.Sizes.Count > 0 ? true : false;
         }
-
         private bool IsColorSpecified(SearchOptions options)
         {
             return options.Colors != null && options.Colors.Count > 0 ? true : false;
